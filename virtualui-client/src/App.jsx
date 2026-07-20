@@ -7,7 +7,7 @@ import { setUserData } from './redux/user.slice.js';
 import { useDispatch } from 'react-redux';
 import Generate from './pages/Generate.jsx';
 
-export const ServerUrl = import.meta.env.VITE_SERVER_URL;
+export const ServerUrl = "https://virtualui-f3cz.onrender.com"
 
 const App = () => {
 
