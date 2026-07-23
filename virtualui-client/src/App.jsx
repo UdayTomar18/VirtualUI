@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from "./pages/Home.jsx"
 import { useEffect } from 'react';
 import axios from 'axios';
-import { setUserData, setAllComponents } from './redux/user.slice.js';
+import { setUserData } from './redux/user.slice.js';
 import { useDispatch } from 'react-redux';
 import Generate from './pages/Generate.jsx';
 import AllComponents from './pages/AllComponents.jsx';
@@ -32,24 +32,6 @@ const App = () => {
     }
     fetchUser()
   },[]);
-
-  useEffect(() => {
-  const fetchAllComponents = async () => {
-    try {
-      const res = await axios.get(
-        ServerUrl + "/api/component/all-components",
-        { withCredentials: true }
-      );
-
-      dispatch(setAllComponents(res.data));
-    } catch (error) {
-      console.log(error.response?.data || error.message);
-      dispatch(setAllComponents([]));
-    }
-  };
-
-  fetchAllComponents();
-}, [dispatch]);
 
 
   return (
