@@ -6,9 +6,7 @@ import axios from 'axios';
 import { setUserData } from './redux/user.slice.js';
 import { useDispatch } from 'react-redux';
 import Generate from './pages/Generate.jsx';
-import AllComponents from './pages/AllComponents.jsx';
-import Pricing from './pages/Pricing.jsx';
-import MyComponents from "./pages/MyComponents.jsx";
+
 
 
 export const ServerUrl = "https://virtualui-f3cz.onrender.com"
@@ -37,9 +35,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/generate" element={<Generate />} />
-              <Route path="/component" element={<AllComponents />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/my-components" element={<MyComponents />} />
+
       
 
 
