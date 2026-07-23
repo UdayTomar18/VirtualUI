@@ -1,19 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteApp } from "firebase/app";
-
 
 const userSlice = createSlice({
-    name:"user",
-    initialState:{
-        userData:null
+  name: "user",
+  initialState: {
+    userData: null,
+    allComponents: [],
+  },
+  reducers: {
+    setUserData: (state, action) => {
+      state.userData = action.payload;
     },
-    reducers:{
-        setUserData:(state,action)=>{
-            state.userData = action.payload
-        }
-    }
+
+    setAllComponents: (state, action) => {
+      state.allComponents = action.payload;
+    },
+  },
 });
 
-export const {setUserData} = userSlice.actions
+export const { setUserData, setAllComponents } = userSlice.actions;
 
-export default userSlice.reducer
+export default userSlice.reducer;
