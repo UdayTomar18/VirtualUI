@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { LiveProvider, LivePreview, LiveError } from "react-live";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { FiRefreshCw } from "react-icons/fi";
 
 export default function LiveComponentPreview({ code }) {
