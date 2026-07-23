@@ -1,28 +1,26 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Home from "./pages/Home.jsx"
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+
+import Home from "./pages/Home.jsx";
+import Generate from "./pages/Generate.jsx";
+import AllComponents from "./pages/AllComponents.jsx";
+import Pricing from "./pages/Pricing.jsx";
+import MyComponents from "./pages/MyComponents.jsx";
+
 import {
   setUserData,
   setAllComponents,
-  setAllUsers,
-} from './redux/user.slice.js';
-import { useDispatch, useSelector } from 'react-redux';
-import Generate from './pages/Generate.jsx';
-import AllComponents from './pages/AllComponents.jsx';
-import Pricing from './pages/Pricing.jsx';
-import MyComponents from "./pages/MyComponents.jsx";
+} from "./redux/user.slice.js";
 
-export const ServerUrl = import.meta.env.VITE_SERVER_URL;
+export const ServerUrl = "https://virtualui-f3cz.onrender.com";
 
 const App = () => {
-
   const dispatch = useDispatch();
-  const { userData } = useSelector((state) => state.user);
-
   const [authChecked, setAuthChecked] = useState(false);
 
+  // Fetch Current User
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -42,48 +40,24 @@ const App = () => {
     fetchUser();
   }, [dispatch]);
 
+  // Fetch All Components
   useEffect(() => {
+    const fetchAllComponents = async () => {
+      try {
+        const res = await axios.get(
+          ServerUrl + "/api/component/all-components",
+          { withCredentials: true }
+        );
 
-    // Fetch only after user is loaded
-    if (userData) {
+        dispatch(setAllComponents(res.data));
+      } catch (error) {
+        console.log(error.response?.data || error.message);
+        dispatch(setAllComponents([]));
+      }
+    };
 
-      const fetchAllUsers = async () => {
-        try {
-          const userRes = await axios.get(
-            ServerUrl + "/api/user/all-users",
-            { withCredentials: true }
-          );
-
-          dispatch(setAllUsers(userRes.data));
-          console.log(userRes.data);
-
-        } catch (error) {
-          console.log(error.response?.data || error.message);
-          dispatch(setAllUsers(null));
-        }
-      };
-
-      const fetchAllComponents = async () => {
-        try {
-          const componentRes = await axios.get(
-            ServerUrl + "/api/component/all-components",
-            { withCredentials: true }
-          );
-
-          dispatch(setAllComponents(componentRes.data));
-          console.log(componentRes.data);
-
-        } catch (error) {
-          console.log(error.response?.data || error.message);
-          dispatch(setAllComponents(null));
-        }
-      };
-
-      fetchAllUsers();
-      fetchAllComponents();
-    }
-
-  }, [userData, dispatch]);
+    fetchAllComponents();
+  }, [dispatch]);
 
   return (
     <>
