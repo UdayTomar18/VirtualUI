@@ -17,7 +17,7 @@ export const saveComponent = async (req, res) => {
         if (user.role === "admin") {
             const existing = await Component.findOne({
                 name,
-                visibilty: "public",
+                visibility: "public",
             });
 
             if (existing) {
