@@ -147,7 +147,7 @@ export const publishComponent = async (req, res) => {
             stdio: "inherit",
         });
 
-        component.visibilty = "public";
+        component.visibility = "public";
         component.npmPackage = "virtual-ui-library-uday";
 
         await component.save();
