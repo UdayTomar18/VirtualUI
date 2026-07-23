@@ -6,6 +6,7 @@ import axios from 'axios';
 import { setUserData } from './redux/user.slice.js';
 import { useDispatch } from 'react-redux';
 import Generate from './pages/Generate.jsx';
+import AllComponents from './pages/AllComponents.jsx';
 
 
 
@@ -35,6 +36,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/generate" element={<Generate />} />
+              <Route path="/component" element={<AllComponents />} />
 
       
 
