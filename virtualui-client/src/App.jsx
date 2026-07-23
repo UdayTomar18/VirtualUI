@@ -7,6 +7,8 @@ import { setUserData } from './redux/user.slice.js';
 import { useDispatch } from 'react-redux';
 import Generate from './pages/Generate.jsx';
 import AllComponents from './pages/AllComponents.jsx';
+import Pricing from './pages/Pricing.jsx';
+import MyComponents from "./pages/MyComponents.jsx";
 
 
 
